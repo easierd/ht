@@ -1,11 +1,8 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-#include "chain.h"
-#include "chain_utils.h"
-
-#include "hash_table.h"
-#include "hash_table_utils.h"
+#include "ht/hash_table.h"
+#include "utils/hash_table_utils.h"
 
 int main(void) {
     HashTable ht;
