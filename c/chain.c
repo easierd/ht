@@ -8,12 +8,12 @@ void chain_init(Chain* c) {
     c->head = NULL;
 }
 
-void chain_prepend(Chain* c, char* item) {
+void chain_prepend(Chain* c, uint32_t key, char* item) {
     ChainNode* new_node = (ChainNode*) malloc(sizeof(ChainNode));
-
 
     new_node->next = c->head;
     new_node->prev = NULL;
+    new_node->key = key;
     new_node->item = item;
 
     if (c->head) {
@@ -24,11 +24,11 @@ void chain_prepend(Chain* c, char* item) {
 }
 
 
-void chain_remove(Chain*c, char* item) {
+void chain_remove(Chain*c, uint32_t key) {
     ChainNode* n = c->head;
     while (n) {
         ChainNode* n_next = n->next;
-        if (strcmp(n->item, item) == 0) {
+        if (n->key == key) {
 
             if (n->prev) {
                 n->prev->next = n->next;
@@ -53,4 +53,9 @@ void chain_free(Chain* c) {
         free(c->head);
         c->head = t;
     }
+}
+
+
+bool chain_empty(Chain* c) {
+    return c->head == NULL;
 }

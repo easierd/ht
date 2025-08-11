@@ -5,10 +5,14 @@
 
 #pragma once
 
+#include <stdint.h>
+#include <stdbool.h>
+
 typedef struct ChainNode {
-   char* item;
-   struct ChainNode* next;
-   struct ChainNode* prev;
+    uint32_t key;
+    char* item;
+    struct ChainNode* next;
+    struct ChainNode* prev;
 } ChainNode;
 
 
@@ -17,7 +21,9 @@ typedef struct Chain {
 } Chain;
 
 void chain_init(Chain*);
-void chain_prepend(Chain*, char*);
-void chain_remove(Chain*, char*);
+void chain_prepend(Chain*, uint32_t, char*);
+void chain_remove(Chain*, uint32_t);
 void chain_free(Chain*);
+
+bool chain_empty(Chain*);
 

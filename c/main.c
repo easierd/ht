@@ -3,13 +3,22 @@
 #include "chain.h"
 #include "chain_utils.h"
 
+#include "hash_table.h"
+#include "hash_table_utils.h"
+
 int main(void) {
-    Chain c;
-    chain_init(&c);
+    HashTable ht;
+    ht_init(&ht);
 
-    chain_prepend(&c, "ciao");
+    ht_insert(&ht, 25, "ciao");
+    ht_insert(&ht, 26, "ciao");
 
-    chain_print(&c);
+    ht_print(&ht);
 
-    chain_free(&c);
+    ht_delete(&ht, 25);
+    ht_delete(&ht, 26);
+
+    ht_print(&ht);
+
+    ht_free(&ht);
 }

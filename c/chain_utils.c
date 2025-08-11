@@ -3,12 +3,13 @@
 #include "chain_utils.h"
 
 void chain_print(Chain* c) {
-    printf("[");
     ChainNode* n = c->head;
     while(n) {
-       printf("%s, ", n->item); 
+       printf("{%u: %s}", n->key, n->item); 
+       if (n->next) {
+            printf(",");
+       }
        n = n->next;
     }
-    printf("]\n");
 }
 
