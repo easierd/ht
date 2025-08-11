@@ -1,4 +1,5 @@
-#define TYPE char*
+#include<stdlib.h>
+#include<stdio.h>
 
 #include "chain.h"
 #include "chain_utils.h"
@@ -10,8 +11,19 @@ int main(void) {
     HashTable ht;
     ht_init(&ht);
 
-    ht_insert(&ht, 25, "ciao");
-    ht_insert(&ht, 26, "ciao");
+    // this will cause a leak 
+    char* str = malloc(sizeof(char) * 5);
+    str[0] = 'a';
+    str[1] = 'a';
+    str[2] = 'a';
+    str[3] = 'a';
+    str[4] = 0;
+
+    ht_insert(&ht, 25, str);
+    ht_insert(&ht, 25, "sanvi");
+    ht_insert(&ht, 324, "consomdsf");
+    ht_insert(&ht, 234, "c programming");
+    ht_insert(&ht, 3240, "hash_table");
 
     ht_print(&ht);
 
@@ -21,4 +33,5 @@ int main(void) {
     ht_print(&ht);
 
     ht_free(&ht);
+    free(str);
 }

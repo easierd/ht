@@ -47,6 +47,18 @@ void chain_remove(Chain*c, uint32_t key) {
 }
 
 
+char* chain_locate(Chain* c, uint32_t key) {
+    ChainNode* n = c->head;
+    while(n) {
+        if (n->key == key) {
+            return n->item;
+        }
+    }
+
+    return NULL;
+}
+
+
 void chain_free(Chain* c) {
     while (c->head) {
         ChainNode* t = c->head->next;

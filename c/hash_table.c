@@ -1,3 +1,4 @@
+#include<stdio.h>
 #include<stddef.h>
 
 #include "hash_table.h"
@@ -14,7 +15,13 @@ void ht_init(HashTable* ht) {
 
 void ht_insert(HashTable* ht, uint32_t key, char* value) {
     uint8_t hash = hash_key(key);
-    chain_prepend(ht->table + hash, key, value);
+    char* located = chain_locate(ht->table + hash, key);
+    if (!located) {
+        chain_prepend(ht->table + hash, key, value);
+    } else {
+        fprintf(stderr, "Error table already contains key %u\n", key);
+    }
+
 }
 
 

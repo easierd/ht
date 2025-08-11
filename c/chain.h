@@ -23,6 +23,7 @@ typedef struct Chain {
 void chain_init(Chain*);
 void chain_prepend(Chain*, uint32_t, char*);
 void chain_remove(Chain*, uint32_t);
+char* chain_locate(Chain*, uint32_t);
 void chain_free(Chain*);
 
 bool chain_empty(Chain*);
