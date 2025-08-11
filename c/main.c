@@ -4,6 +4,7 @@
 #include "ht/hash_table.h"
 #include "utils/hash_table_utils.h"
 
+
 int main(void) {
     HashTable ht;
     ht_init(&ht);
@@ -32,3 +33,4 @@ int main(void) {
     ht_free(&ht);
     free(str);
 }
+

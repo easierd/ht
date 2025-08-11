@@ -3,15 +3,18 @@
 
 #include "hash_table.h"
 
+
 uint8_t hash_key(uint32_t key) {
     return key % TABLE_SIZE;
 }
+
 
 void ht_init(HashTable* ht) {
     for (size_t i = 0; i < TABLE_SIZE; i++) {
         chain_init(ht->table + i);
     }
 }
+
 
 void ht_insert(HashTable* ht, uint32_t key, char* value) {
     uint8_t hash = hash_key(key);
@@ -21,7 +24,6 @@ void ht_insert(HashTable* ht, uint32_t key, char* value) {
     } else {
         fprintf(stderr, "Error table already contains key %u\n", key);
     }
-
 }
 
 
@@ -36,3 +38,4 @@ void ht_free(HashTable* ht) {
         chain_free(ht->table + i);        
     }
 }
+

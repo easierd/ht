@@ -4,6 +4,7 @@
 #include "chain_utils.h"
 #include "hash_table_utils.h"
 
+
 void ht_print(HashTable* ht) {
     bool is_one_pair_printed = false;
     printf("{");

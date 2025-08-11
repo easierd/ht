@@ -4,9 +4,11 @@
 
 #include "chain.h"
 
+
 void chain_init(Chain* c) {
     c->head = NULL;
 }
+
 
 void chain_prepend(Chain* c, uint32_t key, char* item) {
     ChainNode* new_node = (ChainNode*) malloc(sizeof(ChainNode));
@@ -71,3 +73,4 @@ void chain_free(Chain* c) {
 bool chain_empty(Chain* c) {
     return c->head == NULL;
 }
+

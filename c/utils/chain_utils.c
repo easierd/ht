@@ -2,6 +2,7 @@
 
 #include "chain_utils.h"
 
+
 void chain_print(Chain* c) {
     ChainNode* n = c->head;
     while(n) {
