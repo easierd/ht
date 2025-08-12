@@ -7,6 +7,7 @@
 
 void chain_init(Chain* c) {
     c->head = NULL;
+    c->len = 0;
 }
 
 
@@ -23,6 +24,7 @@ void chain_prepend(Chain* c, uint32_t key, char* item) {
     }
 
     c->head = new_node;
+    (c->len)++;
 }
 
 
@@ -43,6 +45,7 @@ void chain_remove(Chain*c, uint32_t key) {
             }
 
             free(n);
+            c->len--;
         }
         n = n_next;
     }
@@ -68,10 +71,16 @@ void chain_free(Chain* c) {
         free(c->head);
         c->head = t;
     }
+    c->len = 0;
 }
 
 
 bool chain_empty(Chain* c) {
     return c->head == NULL;
+}
+
+
+size_t chain_length(Chain* c) {
+    return c->len;
 }
 

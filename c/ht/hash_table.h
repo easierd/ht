@@ -4,7 +4,8 @@
 
 #include "chain.h"
 
-#define TABLE_SIZE 37
+// m is chosen to be a 8-bit word (uint8_t)
+#define TABLE_SIZE 256 
 
 
 typedef struct HashTable {

@@ -3,9 +3,14 @@
 
 #include "hash_table.h"
 
-
-uint8_t hash_key(uint32_t key) {
+uint8_t division_hash(uint32_t key) {
     return key % TABLE_SIZE;
+}
+
+
+uint8_t mul_shift_hash(uint32_t key) {
+    uint32_t a = 0x21023212;
+    return (a * key) >> 24;
 }
 
 
@@ -17,7 +22,7 @@ void ht_init(HashTable* ht) {
 
 
 void ht_insert(HashTable* ht, uint32_t key, char* value) {
-    uint8_t hash = hash_key(key);
+    uint8_t hash = mul_shift_hash(key);
     char* located = chain_locate(ht->table + hash, key);
     if (!located) {
         chain_prepend(ht->table + hash, key, value);
@@ -28,7 +33,7 @@ void ht_insert(HashTable* ht, uint32_t key, char* value) {
 
 
 void ht_delete(HashTable* ht, uint32_t key) {
-    uint8_t hash = hash_key(key);
+    uint8_t hash = mul_shift_hash(key);
     chain_remove(ht->table + hash, key);
 }
 

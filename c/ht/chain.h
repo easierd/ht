@@ -19,6 +19,7 @@ typedef struct ChainNode {
 
 typedef struct Chain {
     ChainNode* head;
+    size_t len;
 } Chain;
 
 
@@ -28,4 +29,5 @@ void chain_remove(Chain*, uint32_t);
 char* chain_locate(Chain*, uint32_t);
 void chain_free(Chain*);
 bool chain_empty(Chain*);
+size_t chain_length(Chain*);
 
