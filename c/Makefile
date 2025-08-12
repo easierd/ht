@@ -11,7 +11,10 @@ hash_table_utils.o: utils/hash_table_utils.c
 	gcc -c -Wall -Wextra -fsanitize=address utils/hash_table_utils.c
 
 main: main.c chain_utils.o chain.o hash_table.o hash_table_utils.o
-	gcc -o main -Wall -Wextra -fsanitize=address main.c chain_utils.o chain.o hash_table.o hash_table_utils.o
+	gcc -o main -Wall -Wextra -fsanitize=address main.c chain_utils.o chain.o hash_table.o hash_table_utils.o -lm
+
+benchmark: main.c chain_utils.o chain.o hash_table.o hash_table_utils.o
+	gcc -o benchmark -O0 -Wall -Wextra -fsanitize=address main.c chain_utils.o chain.o hash_table.o hash_table_utils.o -lm
 
 clear:
-	rm main *.o
+	rm main benchmark *.o
