@@ -10,6 +10,7 @@
 
 typedef struct HashTable {
     Chain table[TABLE_SIZE];
+    uint32_t rnd_hash_param;
 } HashTable;
 
 
