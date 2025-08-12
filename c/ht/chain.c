@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<errno.h>
 
 #include "chain.h"
 
@@ -13,6 +14,11 @@ void chain_init(Chain* c) {
 
 void chain_prepend(Chain* c, uint32_t key, char* item) {
     ChainNode* new_node = (ChainNode*) malloc(sizeof(ChainNode));
+    if (new_node == NULL) {
+        fprintf(stderr, "Unable to allocate a new node with (key=%u, value=%s)\n", key, item);
+        perror(NULL);
+        return;
+    }
 
     new_node->next = c->head;
     new_node->prev = NULL;
