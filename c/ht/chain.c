@@ -55,6 +55,7 @@ char* chain_locate(Chain* c, uint32_t key) {
         if (n->key == key) {
             return n->item;
         }
+        n = n->next;
     }
 
     return NULL;
