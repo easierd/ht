@@ -58,6 +58,12 @@ void ht_insert(HashTable* ht, uint32_t key, char* value) {
 }
 
 
+char* ht_locate(HashTable* ht, uint32_t key) {
+    uint8_t hash = mul_shift_hash(ht->rnd_hash_param, key);
+    return chain_locate(ht->table + hash, key);
+}
+
+
 void ht_delete(HashTable* ht, uint32_t key) {
     uint8_t hash = mul_shift_hash(ht->rnd_hash_param, key);
     chain_remove(ht->table + hash, key);
